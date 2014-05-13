@@ -25,7 +25,8 @@
         <% end %>
 
 <% end %>
-The Editor's Pick is "<%= link_to editor_title, "/books/#{editor_id}" %>"!
-
-
-
+<% if editor_id == -1 %>
+  There is no Editor's Pick
+<% else %>
+  The Editor's Pick is "<%= link_to editor_title, "/books/#{editor_id}" %>"!
+<% end %>
