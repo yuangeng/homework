@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140422042126) do
+ActiveRecord::Schema.define(version: 20140510161600) do
 
   create_table "books", force: true do |t|
     t.string  "title"
@@ -19,6 +19,18 @@ ActiveRecord::Schema.define(version: 20140422042126) do
     t.string  "author"
     t.text    "summary"
     t.boolean "hardcover", default: false
+  end
+
+  create_table "reviews", force: true do |t|
+    t.string  "book_title"
+    t.integer "star_rating"
+    t.text    "review"
+  end
+
+  create_table "titles", force: true do |t|
+    t.string  "book_title"
+    t.string  "author"
+    t.integer "price"
   end
 
 end

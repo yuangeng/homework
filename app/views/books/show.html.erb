@@ -1,0 +1,55 @@
+<h1>Book Detail</h1>
+<% title = Title.find_by("id" => params["id"]) %>
+
+Title: <%= title.book_title %><br>
+Price: $<%= title.price %><br>
+Average Star Rating:
+
+<% sum = 0.0 %>
+<% count = 0.0 %>
+
+<% book_review = Review.where("book_title" => title.book_title) %>
+<% book_review.read.each do |review| %>
+<% sum = sum + review.star_rating %>
+<% count = count + 1 %>
+<% end %>
+  <% if count>0 %>
+  <% average=sum/count %>
+  <%= number_with_precision(average, :precision => 2) %> <br>
+    <% else %>
+    <%= "Not Available" %>
+    <% end %>
+
+<hr>
+<table border="1" style="width:500px">
+  <thead>
+  <tr>
+    <td>
+      <b>
+        <center>Rating</center>
+      </b>
+    </td>
+    <td>
+      <b>
+        <center>Review</center>
+      </b>
+    </td>
+  </tr>
+  </thead>
+ <tr>
+    <% book_review = Review.where("book_title" => title.book_title) %>
+    <% book_review.read.each do |review| %>
+      <tr>
+        <td>
+          <center>
+            <%= review.star_rating %>
+            </center>
+        </td>
+        <td>
+          <%= review.review %>
+        </td>
+      </tr>
+    <% end %>
+    </tr>
+</table>
+

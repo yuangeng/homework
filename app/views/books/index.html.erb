@@ -1,0 +1,42 @@
+<h1>Books</h1>
+
+<table border="1" style="width:500px">
+  <thead>
+  <tr>
+    <td>
+      <b>
+        <center>Book Title</center>
+      </b>
+    </td>
+    <td>
+      <b>
+        <center>Average Rating</center>
+      </b>
+    </td>
+  </tr>
+  </thead>
+
+<% Title.read.each do |title| %>
+<tr>
+  <td>
+      <%= link_to title["book_title"], "/books/#{title["id"]}" %>
+
+  </td>
+
+<% sum = 0.0 %>
+<% count = 0.0 %>
+<% reviews = Review.where("book_title" => title.book_title) %>
+  <% reviews.read.each do |review|%>
+    <% sum = sum + review.star_rating.to_f %>
+    <% count = count + 1 %>
+    <% end %>
+     <td>
+      <% if count>0 %>
+      <% average=sum/count %>
+      <%= number_with_precision(average, :precision => 2) %> <br>
+        <% else %>
+       <%= "Doesn't have ratings" %>
+       <% end %>
+    </td>
+</tr>
+<% end %>

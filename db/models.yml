@@ -5,6 +5,16 @@ Book:
   - summary: text
   - hardcover: boolean
 
+Title:
+  - book_title: string
+  - author: string
+  - price: integer
+
+Review:
+  - book_title: string
+  - star_rating: integer
+  - review: text
+
 # Example table for a typical Book model.
 #
 # Book:
